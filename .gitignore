@@ -1,0 +1,44 @@
+# Python
+__pycache__
+.py[cod]
+$py.class
+
+# Virtual environments
+.venv
+venv
+env
+ENV
+
+# IDEs
+.vscode
+.idea
+
+# Build
+build
+dist
+.spec
+
+# Python packaging
+.egg-info
+
+# Zibbo local data
+Storage
+.zib
+auth.json
+settings.json
+vault.json
+vault.json.enc
+
+# Logs
+.log
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Secrets
+.env
+.env.
+.key
+.pem
