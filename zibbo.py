@@ -19,7 +19,7 @@ from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 from cryptography.hazmat.primitives.kdf.hkdf import HKDF
 from PySide6.QtCore import Qt, QThread, Signal, QUrl
-from PySide6.QtGui import QAction, QColor, QDragEnterEvent, QDropEvent
+from PySide6.QtGui import QAction, QColor, QDragEnterEvent, QDropEvent, QIcon
 from PySide6.QtWidgets import (
     QApplication,
     QComboBox,
@@ -1409,11 +1409,18 @@ def ensure_auth(auth: AuthManager, parent=None) -> bytes | None:
         QMessageBox.critical(parent, "Setup error", f"Could not create the password:\n{exc}")
         return None
 
+def resource_path(filename: str) -> str:
+    if getattr(sys, "frozen", False) and hasattr(sys, "_MEIPASS"):
+        return str(Path(sys._MEIPASS) / filename)
+    return str(Path(__file__).resolve().parent / filename)
 
 def main() -> int:
     app = QApplication(sys.argv)
     app.setApplicationName(APP_NAME)
     app.setApplicationDisplayName("Zibbo App Hider")
+
+    icon_path = Path(__file__).with_name("icon.png")
+    app.setWindowIcon(QIcon(resource_path("icon.png")))
     app.setStyle("Fusion")
     app.setStyleSheet(DARK_QSS)
 
